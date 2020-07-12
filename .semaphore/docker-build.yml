@@ -16,6 +16,6 @@ blocks:
       jobs:
         - name: Docker build
           commands:
-            - docker pull "${DOCKER_USERNAME}/node_ci_cd_demo:latest" || true
-            - docker build --cache-from "${DOCKER_USERNAME}/node_ci_cd_demo:latest" -t "${DOCKER_USERNAME}/node_ci_cd_demo:$SEMAPHORE_WORKFLOW_ID" .
-            - docker push "${DOCKER_USERNAME}/node_ci_cd_demo:$SEMAPHORE_WORKFLOW_ID"
+            - docker pull "${DOCKER_USERNAME}/node-ci-cd-demo:latest" || true
+            - docker build --cache-from "${DOCKER_USERNAME}/node-ci-cd-demo:latest" -t "${DOCKER_USERNAME}/node-ci-cd-demo:$SEMAPHORE_WORKFLOW_ID" .
+            - docker push "${DOCKER_USERNAME}/node-ci-cd-demo:$SEMAPHORE_WORKFLOW_ID"
