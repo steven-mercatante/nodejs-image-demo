@@ -1,0 +1,21 @@
+version: v1.0
+name: Docker build
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build
+    task:
+      secrets:
+        - name: dockerhub
+      prologue:
+        commands:
+          - checkout
+          - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+      jobs:
+        - name: Docker build
+          commands:
+            - docker pull "${DOCKER_USERNAME}/node_ci_cd_demo:latest" || true
+            - docker build --cache-from "${DOCKER_USERNAME}/node_ci_cd_demo:latest" -t "${DOCKER_USERNAME}/node_ci_cd_demo:$SEMAPHORE_WORKFLOW_ID" .
+            - docker push "${DOCKER_USERNAME}/node_ci_cd_demo:$SEMAPHORE_WORKFLOW_ID"
