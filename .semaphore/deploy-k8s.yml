@@ -12,7 +12,7 @@ blocks:
         - name: do-access-token
       env_vars:
         - name: CLUSTER_NAME
-          value: demo-server
+          value: k8s-demo
       prologue:
         commands:
           - wget https://github.com/digitalocean/doctl/releases/download/v1.20.0/doctl-1.20.0-linux-amd64.tar.gz
