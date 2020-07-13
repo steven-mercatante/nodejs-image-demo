@@ -27,18 +27,18 @@ blocks:
             - source $HOME/env-production
             - envsubst < deployment.yaml | tee deploy.yml
             - kubectl apply -f deploy.yml
-        - name: Tag latest release
-          task:
-            secrets:
-              - name: dockerhub
-            prologue:
-              commands:
-                - checkout
-                - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-                - checkout
-            jobs:
-              - name: docker tag latest
-                commands:
-                  - docker pull "${DOCKER_USERNAME}/node-ci-demo:$SEMAPHORE_WORKFLOW_ID"
-                  - docker tag "${DOCKER_USERNAME}/node-ci-demo:$SEMAPHORE_WORKFLOW_ID" "${DOCKER_USERNAME}/node-ci-demo:latest"
-                  - docker push "${DOCKER_USERNAME}/node-ci-demo:latest"
+  - name: Tag latest release
+    task:
+      secrets:
+        - name: dockerhub
+      prologue:
+        commands:
+          - checkout
+          - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+          - checkout
+      jobs:
+        - name: docker tag latest
+          commands:
+            - docker pull "${DOCKER_USERNAME}/node-ci-demo:$SEMAPHORE_WORKFLOW_ID"
+            - docker tag "${DOCKER_USERNAME}/node-ci-demo:$SEMAPHORE_WORKFLOW_ID" "${DOCKER_USERNAME}/node-ci-demo:latest"
+            - docker push "${DOCKER_USERNAME}/node-ci-demo:latest"
