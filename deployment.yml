@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
         - name: node-ci-cd-demo
-          image: smercatante/node-ci-cd-demo:latest
-          # image: ${DOCKER_USERNAME}/node-ci-cd-demo:${SEMAPHORE_WORKFLOW_ID}
+          image: ${DOCKER_USERNAME}/node-ci-cd-demo:${SEMAPHORE_WORKFLOW_ID}
           env:
             - name: NODE_ENV
               value: "production"

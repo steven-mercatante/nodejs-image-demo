@@ -25,9 +25,8 @@ blocks:
         - name: Deploy
           commands:
             # - source $HOME/env-production
-            # - envsubst < deployment.yaml | tee deploy.yml
-            # - kubectl apply -f deploy.yml
-            - kubectl apply -f deployment.yml
+            - envsubst < deployment.yaml | tee deploy.yml
+            - kubectl apply -f deploy.yml
   - name: Tag latest release
     task:
       secrets:
