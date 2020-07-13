@@ -40,6 +40,6 @@ blocks:
       jobs:
         - name: docker tag latest
           commands:
-            - docker pull "${DOCKER_USERNAME}/node-ci-cd-demo:$SEMAPHORE_WORKFLOW_ID"
-            - docker tag "${DOCKER_USERNAME}/node-ci-cd-demo:$SEMAPHORE_WORKFLOW_ID" "${DOCKER_USERNAME}/node-ci-cd-demo:latest"
+            - docker pull "${DOCKER_USERNAME}/node-ci-cd-demo:${SEMAPHORE_WORKFLOW_ID}"
+            - docker tag "${DOCKER_USERNAME}/node-ci-cd-demo:${SEMAPHORE_WORKFLOW_ID}" "${DOCKER_USERNAME}/node-ci-cd-demo:latest"
             - docker push "${DOCKER_USERNAME}/node-ci-cd-demo:latest"
